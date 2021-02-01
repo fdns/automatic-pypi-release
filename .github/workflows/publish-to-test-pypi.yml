@@ -5,7 +5,7 @@ on:
      branches:
      - '*'
      tags:
-     - '*'
+     - '*.*.0'
 
 jobs:
   build-n-publish:
