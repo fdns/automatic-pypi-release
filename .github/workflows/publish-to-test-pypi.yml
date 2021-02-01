@@ -50,8 +50,3 @@ jobs:
     #  uses: pypa/gh-action-pypi-publish@master
     #  with:
     #    password: ${{ secrets.PYPI_API_TOKEN }}
-
-    - name: Push current version tag
-      run: |
-          git tag $(cd build/lib/ && python -c "import automatic_pypi_release;print(automatic_pypi_release.__version__)")
-          git push --tag
