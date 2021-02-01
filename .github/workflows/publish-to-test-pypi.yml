@@ -1,6 +1,9 @@
 name: Publish Python distributions to PyPI
 
-on: push
+on:
+   push:
+   tag-ignore:
+   - '*'
 
 jobs:
   build-n-publish:
