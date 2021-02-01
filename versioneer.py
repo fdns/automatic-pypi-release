@@ -821,6 +821,33 @@ def render_pep440_old(pieces):
             rendered += ".dev0"
     return rendered
 
+def render_pep440_inc(pieces):
+    """Build up version string, incrementing the patch field,"
+
+    Our goal: MAYOR.MINOR.(PATHCH+1). Note that if you
+    get a tagged build and then dirty it, you'll get TAG+0.gHEX.dirty
+
+    Exceptions:
+    1: no tags. git_describe was just HEX. 0+untagged.DISTANCE.gHEX[.dirty]
+    """
+    if pieces["closest-tag"]:
+        splitted = pieces["closest-tag"].split('.')
+        patch = int(splitted[-1]) + 1
+
+        if pieces["distance"]:
+            patch += pieces["distance"]
+
+        rendered = '.'.join(splitted[0:len(splitted)-1]) + '.' + str(patch)
+
+        if pieces["dirty"]:
+            rendered += ".dirty"
+    else:
+        # exception #1
+        rendered = "0+untagged.%d.g%s" % (pieces["distance"],
+                                          pieces["short"])
+        if pieces["dirty"]:
+            rendered += ".dirty"
+    return rendered
 
 def render_git_describe(pieces):
     """TAG[-DISTANCE-gHEX][-dirty].
@@ -844,6 +871,7 @@ def render_git_describe(pieces):
 
 def render_git_describe_long(pieces):
     """TAG-DISTANCE-gHEX[-dirty].
+
 
     Like 'git describe --tags --dirty --always -long'.
     The distance/hash is unconditional.
@@ -886,6 +914,8 @@ def render(pieces, style):
         rendered = render_git_describe(pieces)
     elif style == "git-describe-long":
         rendered = render_git_describe_long(pieces)
+    elif style == "pep440-inc":
+        rendered = render_pep440_inc(pieces)
     else:
         raise ValueError("unknown style '%%s'" %% style)
 
@@ -1322,6 +1352,34 @@ def render_pep440_old(pieces):
             rendered += ".dev0"
     return rendered
 
+def render_pep440_inc(pieces):
+    """Build up version string, incrementing the patch field,"
+
+    Our goal: MAYOR.MINOR.(PATHCH+1). Note that if you
+    get a tagged build and then dirty it, you'll get TAG+0.gHEX.dirty
+
+    Exceptions:
+    1: no tags. git_describe was just HEX. 0+untagged.DISTANCE.gHEX[.dirty]
+    """
+    if pieces["closest-tag"]:
+        splitted = pieces["closest-tag"].split('.')
+        patch = int(splitted[-1]) + 1
+
+        if pieces["distance"]:
+            patch += pieces["distance"]
+
+        rendered = '.'.join(splitted[0:len(splitted)-1]) + '.' + str(patch)
+
+        if pieces["dirty"]:
+            rendered += ".dirty"
+    else:
+        # exception #1
+        rendered = "0+untagged.%d.g%s" % (pieces["distance"],
+                                          pieces["short"])
+        if pieces["dirty"]:
+            rendered += ".dirty"
+    return rendered
+
 
 def render_git_describe(pieces):
     """TAG[-DISTANCE-gHEX][-dirty].
@@ -1387,6 +1445,8 @@ def render(pieces, style):
         rendered = render_git_describe(pieces)
     elif style == "git-describe-long":
         rendered = render_git_describe_long(pieces)
+    elif style == "pep440-inc":
+        rendered = render_pep440_inc(pieces)
     else:
         raise ValueError("unknown style '%s'" % style)
 

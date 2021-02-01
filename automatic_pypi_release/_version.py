@@ -416,7 +416,7 @@ def render_pep440_inc(pieces):
 
         if pieces["distance"]:
             patch += pieces["distance"]
-            
+
         rendered = '.'.join(splitted[0:len(splitted)-1]) + '.' + str(patch)
 
         if pieces["dirty"]:
@@ -549,4 +549,3 @@ def get_versions():
     return {"version": "0+unknown", "full-revisionid": None,
             "dirty": None,
             "error": "unable to compute version", "date": None}
-print(get_versions())
