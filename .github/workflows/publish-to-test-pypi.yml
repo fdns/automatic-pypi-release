@@ -52,5 +52,5 @@ jobs:
     #    password: ${{ secrets.PYPI_API_TOKEN }}
     - name: Push current version tag
       run: |
-          git tag $(cd build/lib/ && echo "::set-output name=action_version::$(python -c "import automatic_pypi_release;print(automatic_pypi_release.__version__)")")
+          git tag $(cd build/lib/ && python -c "import automatic_pypi_release;print(automatic_pypi_release.__version__)")
           git push --tag
