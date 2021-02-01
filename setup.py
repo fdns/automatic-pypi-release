@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import versioneer
 
 try:
-    long_description = open("README.rst").read()
+    long_description = open("README.md").read()
 except IOError:
     long_description = ""
 
@@ -17,6 +17,7 @@ setup(
     packages=find_packages(),
     install_requires=[],
     long_description=long_description,
+    long_description_content_type='text/markdown',
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.6",
