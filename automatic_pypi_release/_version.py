@@ -429,7 +429,6 @@ def render_pep440_inc(pieces):
             rendered += ".dirty"
     return rendered
 
-
 def render_git_describe(pieces):
     """TAG[-DISTANCE-gHEX][-dirty].
 
@@ -452,6 +451,7 @@ def render_git_describe(pieces):
 
 def render_git_describe_long(pieces):
     """TAG-DISTANCE-gHEX[-dirty].
+
 
     Like 'git describe --tags --dirty --always -long'.
     The distance/hash is unconditional.
@@ -545,7 +545,6 @@ def get_versions():
     except NotThisMethod:
         pass
 
-    
     return {"version": "0+unknown", "full-revisionid": None,
             "dirty": None,
             "error": "unable to compute version", "date": None}
