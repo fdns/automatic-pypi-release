@@ -3,6 +3,8 @@
 
 Automatically build and release to pypi, incrementing the version without user intervention.
 
+Note: This project should be used as a template to build your repository and enable automatic publish to pypi.
+
 This repository does the following:
 * Increase minor version (If not a x.x.0 tagged)
 * Build and uploadpypi package
