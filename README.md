@@ -9,7 +9,7 @@ This repository does the following:
 * push the new tag to the repository
 
 ## Requirements
-This project is setup to use [semver](https://semver.org/), so it will need an initial tag in the format of "1.2.3"
+This project is setup to use [semver](https://semver.org/), so it will need an initial tag in the format of "x.y.0" (The last number must be 0).
 
 Your project must have the following files:
 
