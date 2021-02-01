@@ -1,0 +1,2 @@
+include versioneer.py
+include automatic_pypi_release/_version.py
