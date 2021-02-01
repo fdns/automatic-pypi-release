@@ -412,7 +412,7 @@ def render_pep440_inc(pieces):
     """
     if pieces["closest-tag"]:
         splitted = pieces["closest-tag"].split('.')
-        patch = int(splitted[-1]) + 1
+        patch = int(splitted[-1])
 
         if pieces["distance"]:
             patch += pieces["distance"]
